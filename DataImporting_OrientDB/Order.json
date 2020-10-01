@@ -1,0 +1,29 @@
+{
+  "config": {
+    "log": "debug"
+  },
+  "source" : {
+    "file": { "path": "C:\Users\Public\spao\UniBench-0.2\Dataset\Order\order.json" }
+  },
+  "extractor" : {
+      "row": {"multiLine": false}
+},
+  "transformers": [
+	{"code": {"language": "Javascript","code": "(new com.orientechnologies.orient.core.record.impl.ODocument()).fromJSON(input);"}
+	},
+    {"json": {} },
+    { "vertex": { "class": "Order" } }
+  ],
+  "loader" : {
+    "orientdb": {
+      "dbURL": "plocal:../databases/unibench_test",
+      "wal": false,
+      "dbType": "graph",
+       "classes": [
+         {"name": "Order", "extends": "V"},
+       ], "indexes": [
+         {"class":"Order", "fields":["OrderId:string"], "type":"UNIQUE" }
+       ]
+    }
+	}
+}

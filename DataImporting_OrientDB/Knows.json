@@ -1,0 +1,26 @@
+{
+  "source": { "file": { "path":"C:\Users\Public\spao\UniBench-0.2\Dataset\SocialNetwork\person_knows_person_0_0.csv" } },
+  "extractor": { "row": {} },
+  "transformers": [
+    { "csv": { "separator": "|", "stringCharacter": "", "unicode": false } },
+    { "merge": { "joinFieldName":"from", "lookup":"Customer.id", "unresolvedLinkAction": "ERROR" } },
+    { "vertex": { "class": "Customer"} },
+    { "edge": {
+        "class": "Knows",
+        "joinFieldName": "to",
+        "lookup": "Customer.id",
+        "unresolvedLinkAction": "ERROR"
+      }
+    },
+  ],
+  "loader": {
+    "orientdb": {
+       "dbURL": "plocal:../databases/unibench_test",
+       "dbType": "graph",
+       "classes": [
+         {"name": "Customer", "extends": "V"},
+         {"name": "Knows", "extends": "E"}
+	   ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "source": { "file": { "path": "C:\Users\Public\spao\UniBench-0.2\Dataset\Vendor\vendor.csv" } },
+  "extractor": { "csv": {"separator": ","} },
+  "transformers": [
+    { "vertex": { "class": "Vendor" } }
+  ],
+  "loader": {
+    "orientdb": {
+       "dbURL": "plocal:../databases/unibench_test",
+       "dbType": "graph",
+       "classes": [
+         {"name": "Vendor", "extends": "V"}
+       ]
+    }
+  }
+}

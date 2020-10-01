@@ -1,0 +1,30 @@
+{
+  "source": { "file": { "path":"C:\Users\Public\spao\UniBench-0.2\Dataset\SocialNetwork\post_hasTag_tag_0_0.csv" } },
+  "extractor": { "row": {} },
+  "transformers": [
+    { "csv": { "separator": "|", "stringCharacter": "", "unicode": false } },
+    { "merge": { "joinFieldName":"PostId", "lookup":"Post.id", "unresolvedLinkAction": "ERROR" } },
+    { "vertex": { "class": "Post"} },
+    { "edge": {
+        "class": "PostHasTag",
+        "joinFieldName": "TagId",
+        "lookup": "Product.productId",
+        "unresolvedLinkAction": "ERROR"
+      }
+    },
+  ],
+  "loader": {
+    "orientdb": {
+       "dbURL": "plocal:../databases/unibench_test",
+       "dbType": "graph",
+       "classes": [
+         {"name": "Post", "extends": "V"},
+	 {"name": "Product", "extends": "V"},
+         {"name": "PostHasTag", "extends": "E"},
+	   ], "indexes": [
+         {"class":"Post", "fields":["id:string"], "type":"UNIQUE" },
+	{"class":"Product", "fields":["productId:string"], "type":"UNIQUE" },
+       ]
+    }
+  }
+}

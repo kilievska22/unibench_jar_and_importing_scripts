@@ -1,0 +1,17 @@
+{
+  "source": { "file": { "path": "C:\Users\Public\spao\UniBench-0.2\Dataset\Customer\person_0_0.csv" } },
+  "extractor": { "csv": {"separator": "|"} },
+  "transformers": [
+    { "vertex": { "class": "Customer" } }
+  ],
+  "loader": {
+    "orientdb": {
+       "dbURL": "plocal:../databases/unibench_test",
+       "dbType": "graph",
+       "classes": [
+         {"name": "Customer", "extends": "V"},
+         {"name": "Knows", "extends": "E"}
+       ]
+    }
+  }
+}

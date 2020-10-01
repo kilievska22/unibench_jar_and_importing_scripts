@@ -1,0 +1,16 @@
+{
+  "source": { "file": { "path": "C:\Users\Public\spao\UniBench-0.2\Dataset\Feedback\Feedback.csv" } },
+  "extractor": { "csv": {"separator": "|"} },
+  "transformers": [
+    { "vertex": { "class": "Feedback" } }
+  ],
+  "loader": {
+    "orientdb": {
+       "dbURL": "plocal:../databases/unibench_test",
+       "dbType": "graph",
+       "classes": [
+         {"name": "vendor", "extends": "V"}
+       ]
+    }
+  }
+}

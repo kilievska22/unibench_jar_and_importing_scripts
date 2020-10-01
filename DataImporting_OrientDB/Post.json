@@ -1,0 +1,18 @@
+{
+  "source": { "file": { "path": "C:\Users\Public\spao\UniBench-0.2\Dataset\SocialNetwork\post_0_0.csv" } },
+  "extractor": { "csv": {"separator": "|"} },
+  "transformers": [
+    { "vertex": { "class": "Post" } }
+  ],
+  "loader": {
+    "orientdb": {
+       "dbURL": "plocal:../databases/unibench_test",
+       "dbType": "graph",
+       "classes": [
+         {"name": "Post", "extends": "V"},
+       ], "indexes": [
+         {"class":"Post", "fields":["id:string"], "type":"UNIQUE" }
+       ]
+    }
+  }
+}
